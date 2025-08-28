@@ -37,8 +37,8 @@ public interface ArtifactMapper {
      * 插入artifact
      * @param artifact
      */
-    @Insert("insert into artifact(id, name, image, description, age) " +
-            "values(#{id}, #{name}, #{image}, #{description}, #{age})")
+    @Insert("insert into artifact(id, name, image, description, age, createTime, updateTime) " +
+            "values(#{id}, #{name}, #{image}, #{description}, #{age}, #{createTime}, #{updateTime})")
     void insert(Artifact artifact);
 
     /**

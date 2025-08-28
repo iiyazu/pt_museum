@@ -1,6 +1,7 @@
 package com.iiyatsu.service.impl;
 
 import com.iiyatsu.mapper.UserMapper;
+import com.iiyatsu.pojo.user.Feedback;
 import com.iiyatsu.pojo.user.LoginInfo;
 import com.iiyatsu.pojo.user.User;
 import com.iiyatsu.service.UserService;
@@ -8,6 +9,7 @@ import com.iiyatsu.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,5 +39,14 @@ public class UserServiceImpl implements UserService {
         if(u != null) return false;
         userMapper.insertNewUser(user);
         return true;
+    }
+
+    @Override
+    public void submitFeedback(Feedback feedback) {
+        feedback.setCreateTime(LocalDateTime.now());
+        // 状态默认已在POJO中设置为PENDING，这里再次确认
+        feedback.setStatus(Feedback.FStatus.PENDING);
+        // 调用Mapper将反馈数据持久化到数据库
+        userMapper.insertCommit(feedback);
     }
 }

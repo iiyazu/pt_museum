@@ -1,5 +1,6 @@
 package com.iiyatsu.mapper;
 
+import com.iiyatsu.pojo.user.Feedback;
 import com.iiyatsu.pojo.user.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -17,4 +18,8 @@ public interface UserMapper {
     @Insert("INSERT INTO user (id, name, passwd, admin, user_static)" +
             "VALUES (#{id}, #{name}, #{passwd}, #{admin}, #{user_static});")
     void insertNewUser(User user);
+
+    @Insert("INSERT INTO feedback (user_id, content, status)" +
+            "VALUES (#{user_id}, #{content}, #{status});")
+    void insertCommit(Feedback feedback);
 }
