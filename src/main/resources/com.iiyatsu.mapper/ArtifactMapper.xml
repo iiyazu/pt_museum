@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iiyatsu.mapper.ArtifactMapper">
+
+    <!--
+        该SQL语句用于根据ArtifaQueryParam中的参数进行动态查询。
+        - 根据 age 进行大于等于（>=）查询。
+        - 根据 name 进行模糊查询（LIKE）。
+        - 结合PageHelper使用，不再需要手动编写分页SQL（LIMIT和OFFSET）。
+    -->
+    <select id="selectByParam" resultType="com.iiyatsu.pojo.artifact.Artifact">
+        SELECT
+            id,
+            name,
+            image,
+            age
+        FROM
+            artifact
+        <where>
+            <if test="age != null">
+                <!-- 查询age大于等于指定值的文物 -->
+                AND age >= #{age}
+            </if>
+            <if test="name != null and name != ''">
+                <!-- 根据名称进行模糊查询 -->
+                AND name LIKE concat('%', #{name}, '%')
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <delete id="deleteBatch">
+        DELETE FROM artifact
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
