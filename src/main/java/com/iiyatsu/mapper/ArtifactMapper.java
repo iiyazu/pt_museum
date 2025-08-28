@@ -40,4 +40,10 @@ public interface ArtifactMapper {
     @Insert("insert into artifact(id, name, image, description, age) " +
             "values(#{id}, #{name}, #{image}, #{description}, #{age})")
     void insert(Artifact artifact);
+
+    /**
+     * 根据id更新artifact
+     * @param artifact
+     */
+    void updateById(Artifact artifact);
 }

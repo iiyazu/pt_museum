@@ -72,8 +72,12 @@ public class ArtifactServiceImpl implements ArtifactService {
         artifactMapper.insert(artifact);
     }
 
-//    @Override
-//    public void update(Artifact artifact) {
-//
-//    }
+    /**
+     * 更新 Artifact
+     * @param artifact Artifact 对象
+     */
+    @Override
+    public void update(Artifact artifact) {
+        artifactMapper.updateById(artifact);
+    }
 }
