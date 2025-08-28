@@ -8,5 +8,5 @@ public class User {
     private String name;
     private String passwd;
     private boolean admin = false;
-    private boolean userStatic = false;
+    private boolean userStatus = false;
 }

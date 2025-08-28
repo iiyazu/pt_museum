@@ -11,15 +11,17 @@ spring:
 #    password: root
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 
-# MyBatis ???? spring ?????????
+# MyBatis
+# ----------------------------------------------------
+# 2. MyBatis 配置 (MyBatis Configuration)
+# ----------------------------------------------------
 mybatis:
-  # ????????
   configuration:
     map-underscore-to-camel-case: true
     # ??????? SQL??????????
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   # ?? XML ??????????
-  mapper-locations: classpath:mapper/*.xml
+    mapper-locations: classpath:com/iiyatsu/mapper/*.xml
   # ???????? XML ?? resultType?
   type-aliases-package: com.iiyatsu.pojo
 
@@ -27,3 +29,15 @@ mybatis:
 logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+# ----------------------------------------------------
+# 3. PageHelper 分页插件配置 (PageHelper Configuration)
+#    与你Service层代码中的 PageHelper.startPage() 配合使用
+# ----------------------------------------------------
+pagehelper:
+  # dialect: 数据库方言，例如 mysql, oracle, postgresql 等
+  helper-dialect: mysql
+  # reasonable: 启用合理化，当页码或每页数量不合理时自动修正
+  reasonable: true
+  # support-methods-arguments: 支持通过参数传递分页信息
+  support-methods-arguments: true

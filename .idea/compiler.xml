@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$PROJECT_DIR$/../../../iiyatsu/AppData/maven/apache-maven-3.9.11/mvn_repo/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="$PROJECT_DIR$/../../../iiyatsu/AppData/maven/apache-maven-3.9.11/mvn_repo/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="museum" />
       </profile>
