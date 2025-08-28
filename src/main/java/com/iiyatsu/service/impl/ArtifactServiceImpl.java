@@ -11,6 +11,7 @@ import com.iiyatsu.service.ArtifactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -58,6 +59,10 @@ public class ArtifactServiceImpl implements ArtifactService {
         return pageResult;
     }
 
+    /**
+     * 批量删除 Artifact
+     * @param ids Artifact 的 ID 列表
+     */
     @Override
     public void delete(List<Integer> ids) {
         artifactMapper.deleteBatch(ids);
@@ -69,6 +74,8 @@ public class ArtifactServiceImpl implements ArtifactService {
      */
     @Override
     public void add(Artifact artifact) {
+        artifact.setCreateTime(LocalDateTime.now());
+        artifact.setUpdateTime(LocalDateTime.now());
         artifactMapper.insert(artifact);
     }
 
@@ -78,6 +85,7 @@ public class ArtifactServiceImpl implements ArtifactService {
      */
     @Override
     public void update(Artifact artifact) {
+        artifact.setUpdateTime(LocalDateTime.now());
         artifactMapper.updateById(artifact);
     }
 }
